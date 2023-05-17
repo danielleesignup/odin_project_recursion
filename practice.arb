@@ -1,0 +1,4 @@
+p [].nil?
+p [[]].nil?
+foo = []
+p foo[0].nil?

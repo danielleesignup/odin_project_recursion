@@ -1,0 +1,236 @@
+# #Warmup: Fibonacci
+# def fibs(num)
+#     foo = [0, 1]
+#     b = 0
+#     c = 1
+#     (num - 2).times do 
+#         a = b + c      
+#         foo.push(a)
+#         b = c
+#         c = a
+#     end
+#     foo
+# end
+
+# def fibs_rec(num, sum)   
+#     foo = []
+#     if num == 0 
+#         return foo.shift(0)
+#     elsif num == 1
+#         return foo.shift(1)
+#     else
+#         foo.shift(fibs_rec(num-1))
+#     end
+#     return foo
+# end
+
+# #merge sort
+# def merge_sort(array)
+#     if array.length < 2
+#         if array.length % 2 == 1
+#             #invoke merge sort again and move the following into the first if- block
+#             foo = []
+#             left_add = 0
+#             right_add = 0
+#             left_half_length = array.length // 2 
+#             right_half_length = array.length // 2 + 1
+#             left_half = array.slice(0, left_half_length)
+#             right_half = array.slice(right_half_length, array.length-1)
+#             for i in range(left_half.length)
+#                 for j in range(right_half.length)
+#                     if left_half[i+left_add] > right_half[j+right_add]
+#                         foo.push(right_half[j+right_add])
+#                         j += 1
+#                         next
+#                     elsif left_half[i+left_add] < right_half[j+right_add]
+#                         foo.push(left_half[i+left_add])
+#                         i += 1
+#                         next
+#                     else 
+#                         foo.push(left_half[i+left_add])
+#                         i += 1
+#                         next
+#                     end
+#                 end
+#             end
+#             return foo
+#         elsif array.length % 2 == 0
+#             foo = []
+#             left_half_length = array.length // 2 
+#             right_half_length = array.length // 2 
+#             left_half = array.slice(0, left_half_length)
+#             right_half = array.slice(right_half_length, array.length-1)
+#             left_half_length = array.length // 2 
+#             right_half_length = array.length // 2 + 1
+#             left_half = array.slice(0, left_half_length)
+#             right_half = array.slice(right_half_length, array.length-1)
+#             for i in range(left_half.length)
+#                 for j in range(right_half.length)
+#                     if left_half[i+left_add] > right_half[j+right_add]
+#                         foo.push(right_half[j+right_add])
+#                         j += 1
+#                         next
+#                     elsif left_half[i+left_add] < right_half[j+right_add]
+#                         foo.push(left_half[i+left_add])
+#                         i += 1
+#                         next
+#                     else 
+#                         foo.push(left_half[i+left_add])
+#                         i += 1
+#                         next
+#                     end
+#                 end
+#             end
+#     else
+#         merge_sort()
+#         end
+#     end
+# end
+
+
+# # def merge_sort(array)
+# #     foo = []
+# #     if array.length == 1
+# #         return array
+# #     else
+# #         for i in
+
+# p merge_sort([8,7,6,5,4,3,2,1])
+
+# #merge sort base case is when the length of the array is less than or equal to 2. It then compares the right half and the left half 
+# #and puts the smaller of the two sides as a first element in a new array. The second one is then appended next into the new array
+# #once complete, it returns a sorted array. The second clause must be a recursive one. That means that the first clause, the base
+# #case clause must compare each element in two halves to sort it into a new array. Or the second clause could do the dividing and 
+# #invoke recursivity at the end (ex: return merge_sort(left) + merge_sort(right))
+
+# #If length of array == 1, ready for merge, if length of array > 1, not ready for merge. divide again. 
+
+# #Using min() method to cut(pop method) the minimum value out (a > b? c: d) (or just use min()) to the foo array. Leaving (n-1) options to compare...repeat process until
+# #foo array has all the elements. Partitioning into smaller parts is necessary to avoid n*n number of comparisons. 
+
+# #https://www.hackerearth.com/practice/algorithms/sorting/merge-sort/visualize/
+
+# #for length of the left + right: min splice min splice repeat. 
+# bar = []
+# unless right == nil && left == nil
+#     if min(left[0], right[0]) == left[0]
+#         foo = left.shift
+#         bar.push(foo)
+#         next
+#     if min(left[0], right[0]) == right[0]
+#         foo = left.shift
+#         bar.push(foo)
+#         next
+    #repeat the loop with the refreshed original.
+
+
+#IN INSTRUCTIONAL MATERIAL PSEUDOCODE;
+# SORT THE LEFT HALF OF THE ARRAY(ASSUMING N>1)
+# SORT THE RIGHT HALF OF THE ARRAY(ASSUMING N>1)
+# MERGE THE TWO HALVES TOGETHER
+    #merging should happen when invoked the recursive method.
+    #Wait actually, the "formal version" youtube link on Odin Project shows you how to do it step by step. 
+    #in the case where left is nil but right has more elements, just pop the remaining right elements in order. Don't have 
+    #to sort. just pop it.
+
+#Below is made following the youtube video which link was posted on the Odin Project.
+def merge_sort(array)
+    if array.length > 1
+        half_length = (array.length).div(2) 
+        left_half = array.slice(0, half_length)
+        right_half = array.slice(half_length, array.length-1)
+        left = merge_sort(left_half)
+        right = merge_sort(right_half)
+        # p "right"
+        # p left
+        # p "left"
+        # p left
+        #merge
+        bar = []
+        until right.empty? && left.empty?
+            if right[0].nil?
+                p "-----------"
+                p "right"
+                p right
+                p "-----------"
+                p "left"
+                p left
+                p "-----------"
+                left.each do |element|
+                    foo = left.shift
+                    bar.push(foo)
+                end
+                p 1
+                p "-------"
+                p "bar"
+                p bar
+                p "-------"
+                return bar
+            elsif left[0].nil?
+                p "-----------"
+                p "right"
+                p right
+                p "-----------"
+                p "left"
+                p left
+                p "-----------"
+                while right.length > 0
+                    foo = right.shift
+                    p "======"
+                    p "foo"
+                    p foo
+                    p "======"
+                    bar.push(foo)
+                end
+                p 2
+                p "-------"
+                p "bar"
+                p bar
+                p "-------"
+                return bar
+            elsif left[0] <= right[0]
+                p "-----------"
+                p "right"
+                p right
+                p "-----------"
+                p "left"
+                p left
+                p "-----------"
+                foo = left.shift
+                bar.push(foo)
+                p 3
+                p "-------"
+                p "bar"
+                p bar
+                p "-------"
+                next
+            elsif left[0] > right[0]
+                p "-----------"
+                p "right"
+                p right
+                p "-----------"
+                p "left"
+                p left
+                p "-----------"
+                foo = right.shift
+                bar.push(foo)
+                p 4
+                p "-------"
+                p "bar"
+                p bar
+                p "-------"
+                next
+            end
+        end
+        p "-------"
+        p "bar"
+        p bar
+        p "-------"
+        return bar
+    else
+        return array
+    end
+end
+
+
+p merge_sort([2,1, 8])
